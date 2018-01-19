@@ -1,4 +1,4 @@
-package delicacies.entity.manage;
+package delicacies.entity.management;
 
 public class DelicaciesRoleEntity {
 

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE tiles-definitions PUBLIC  
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"  
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">  
+        
+<tiles-definitions>  
+ 
+    <!-- Base Define -->
+    <definition name="admin.definition" 
+        template="/WEB-INF/layouts/admin.jsp">  
+        <put-attribute name="title" value="" />  
+        <put-attribute name="header" value="/WEB-INF/fragments/admin/_header.jsp" />  
+        <put-attribute name="menu" value="/WEB-INF/fragments/admin/_menu.jsp" />  
+        <put-attribute name="body" value="" />  
+        <put-attribute name="footer" value="/WEB-INF/fragments/admin/_footer.jsp" />  
+    </definition>  
+ 
+    <!-- List Language Page  -->
+    <definition name="adminListLanguagePage" extends="admin.definition">  
+        <put-attribute name="title" value="Admin languages" />  
+        <put-attribute name="body" value="/WEB-INF/fragments/admin/body/_adminListLanguages.jsp" />  
+    </definition>
+
+</tiles-definitions> 
