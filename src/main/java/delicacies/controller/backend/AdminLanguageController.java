@@ -18,7 +18,8 @@ public class AdminLanguageController {
 	
 	@RequestMapping(value = "/admin/language", method = RequestMethod.GET)
 	public String showLanguages(Model model) {
-		
+		List<DelicaciesLanguageModel> list = delicaciesLanguageDAO.listDelicaciesLanguageModel();
+		model.addAttribute("listLanguages", list);
 		return "adminListLanguagePage";
 	}
 	
