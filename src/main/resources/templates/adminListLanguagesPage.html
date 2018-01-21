@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <meta charset="UTF-8" />
+      <title>Person List</title>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+   </head>
+   <body>
+<div style="padding: 5px;">
+ 
+    <ul>
+ 
+        <li><a href="${pageContext.request.contextPath}/">Home</a></li>
+ 
+    </ul>
+ 
+</div>
+<!-- Main content -->
+      <h1>Language List</h1>
+      <a href="/admin/language/add">Add language</a>
+      <br/><br/>
+      <div>
+         <table border="1">
+            <tr>
+            	<th>ID</th>
+               <th>Code</th>
+               <th>Name</th>
+            </tr>
+            <tr th:each ="language : ${listLanguages}">
+               <td th:utext="${language.id}">...</td>
+               <td th:utext="${language.code}">...</td>
+               <td th:utext="${language.name}">...</td>
+               <td><a th:href="@{/admin/language/edit?id={id}(id=${language.id})}">Edit</a></td>
+               <td><a th:href="@{/admin/language/delete?id={id}(id=${language.id})}">Delete</a></td>
+            </tr>
+         </table>
+      </div>
+<!-- End main content -->
+	<div
+	   style="background: #E0E0E0; text-align: center; padding: 5px; margin-top: 10px;">
+	     
+	   @Copyright o7planning.org
+	     
+	</div>
+   </body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <meta charset="UTF-8" />
+      <title>Person List</title>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+   </head>
+   <body>
+<div style="padding: 5px;">
+ 
+    <ul>
+ 
+        <li><a href="${pageContext.request.contextPath}/">Home</a></li>
+        <li><a href="${pageContext.request.contextPath}/add">Add language</a></li>
+ 
+    </ul>
+ 
+</div>
+<!-- Main content -->
+      <h1>Person List</h1>
+      <a href="admin/language">List language</a>
+      
+      
+      <form th:action="@{/admin/language/edit}"
+         th:object="${delicaciesLanguageForm}" method="POST">
+         <input type="hidden" th:field="*{id}" />
+         Language code:
+         <input type="text" th:field="*{code}" />    
+         <br/>
+         Language Name:
+         <input type="text" th:field="*{name}" />     
+         <br/>
+         <input type="submit" value="Update" />
+      </form>
+
+<!-- End main content -->
+	<div
+	   style="background: #E0E0E0; text-align: center; padding: 5px; margin-top: 10px;">
+	     
+	   @Copyright o7planning.org
+	     
+	</div>
+   </body>
+</html>
