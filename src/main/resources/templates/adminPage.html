@@ -16,7 +16,9 @@
       <br/><br/>
        
       <div th:if="${userInfo != null}" th:utext="${userInfo}"></div>
-       
+       <ul>
+       	<li><a th:href="@{/admin/language}">Language</a></li>
+       </ul>
    </body>
     
 </html>

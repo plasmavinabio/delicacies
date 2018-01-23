@@ -1,0 +1,8 @@
+multiple language
+Permission by code
+Media 
+WYSWYG for Editor
+Apache tiles with Thymeleaf
+path alias
+SEO
+Manage role
