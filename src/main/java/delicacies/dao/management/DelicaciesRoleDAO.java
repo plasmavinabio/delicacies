@@ -16,12 +16,12 @@ public class DelicaciesRoleDAO {
     @Autowired
     private EntityManager entityManager;
  
-    public List<String> getRoleNames(int userId) {
-        String sql = "Select ur.role.code from " + DelicaciesUserRoleEntity.class.getName() + " ur " //
-                + " where ur.user.id = :userId ";
+    public List<String> getRoleCodes(Long userId) {
+        String sql = "Select ur.delicaciesRoleEntity.roleCode from " + DelicaciesUserRoleEntity.class.getName() + " ur " //
+                + " where ur.delicaciesUserEntity.userId = :userId ";
  
         Query query = this.entityManager.createQuery(sql, String.class);
-        query.setParameter("user_id", userId);
+        query.setParameter("userId", userId);
         return query.getResultList();
     }
 }

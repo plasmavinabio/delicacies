@@ -1,17 +1,17 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
    <head>
-      <title th:utext="${title}"></title>
+      <title>Login</title>
    </head>
-    
    <body>
-<!-- Include _menu.html -->
+      <!-- Include _menu.html -->
       <th:block th:include="/_menu"></th:block>
        
       <h1>Login</h1>
        
-<!--       /login?error=true -->
-      <div th:if="${(param.error != null) and (param.error[0] == 'true')}"  style="color:red;margin:10px 0px;">
+      <!-- /login?error=true -->
+      <div th:if="${(param.error != null) and (param.error[0] == 'true')}"
+            style="color:red;margin:10px 0px;">
          Login Failed!!!<br />
          Reason :
          <span th:if="${#session!= null and #session.getAttribute('SPRING_SECURITY_LAST_EXCEPTION') != null}"
@@ -26,7 +26,7 @@
          <table>
             <tr>
                <td>User:</td>
-				<td><input type='text' name='username' /></td>
+               <td><input type='text' name='username' value='' /></td>
             </tr>
             <tr>
                <td>Password:</td>
@@ -47,6 +47,8 @@
       <ul>
         <li>dbuser1/123</li>
         <li>dbadmin1/123</li>
-      </ul>
+      </ul>  
+       
    </body>
+    
 </html>

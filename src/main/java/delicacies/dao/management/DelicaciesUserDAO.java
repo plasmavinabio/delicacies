@@ -18,10 +18,10 @@ public class DelicaciesUserDAO {
 	    public DelicaciesUserEntity findUserAccount(String userName) {
 	        try {
 	            String sql = "Select e from " + DelicaciesUserEntity.class.getName() + " e " //
-	                    + " Where e.username = :userName ";
+	                    + " Where e.userName = :userName ";
 	 
 	            Query query = entityManager.createQuery(sql, DelicaciesUserEntity.class);
-	            query.setParameter("username", userName);
+	            query.setParameter("userName", userName);
 	 
 	            return (DelicaciesUserEntity) query.getSingleResult();
 	        } catch (NoResultException e) {
