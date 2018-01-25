@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <meta charset="UTF-8" />
+      <title>Person List</title>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+   </head>
+   <body>
+<div style="padding: 5px;">
+ 
+    <ul>
+ 
+        <li><a href="${pageContext.request.contextPath}/">Home</a></li>
+        <li><a href="${pageContext.request.contextPath}/add">Add language</a></li>
+ 
+    </ul>
+ 
+</div>
+<!-- Main content -->
+      <h1>Person List</h1>
+      <a href="admin/content/news">List news</a>
+      
+      
+      <form th:action="@{/admin/content/news/add}"
+         th:object="${delicaciesNewsForm}" method="POST">
+         Title:
+         <input type="text" th:field="*{title}" />    
+         <br/>
+         Description:
+         <textarea  rows = "10" cols = "80" th:field = "*{description}">... </textarea>
+         <br />
+         Body:
+         <textarea  rows = "20" cols = "80" th:field = "*{body}">... </textarea>
+         
+         <input type="submit" value="Create" />
+      </form>
+
+<!-- End main content -->
+	<div
+	   style="background: #E0E0E0; text-align: center; padding: 5px; margin-top: 10px;">
+	     
+	   @Copyright training.spring
+	     
+	</div>
+   </body>
+</html>

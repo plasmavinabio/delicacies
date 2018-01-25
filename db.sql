@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 23, 2018 at 02:53 PM
+-- Generation Time: Jan 25, 2018 at 05:53 PM
 -- Server version: 5.6.33-0ubuntu0.14.04.1
 -- PHP Version: 5.6.30-7+deb.sury.org~trusty+1
 
@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `language` (
   `code` varchar(32) CHARACTER SET utf8 NOT NULL,
   `name` varchar(128) CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `language`
@@ -34,7 +34,36 @@ CREATE TABLE IF NOT EXISTS `language` (
 INSERT INTO `language` (`id`, `code`, `name`) VALUES
 (1, 'vn', 'Việt Nam'),
 (2, 'en', 'English'),
-(3, 'fr', 'French');
+(3, 'fr', 'French'),
+(5, 'ir', 'IRAQ'),
+(6, 'ab', 'AB language');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `news`
+--
+
+CREATE TABLE IF NOT EXISTS `news` (
+  `news_id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(256) NOT NULL,
+  `description` longtext NOT NULL,
+  `image_name` int(11) DEFAULT NULL,
+  `body` longtext NOT NULL,
+  `enabled` tinyint(1) NOT NULL DEFAULT '0',
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`news_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `news`
+--
+
+INSERT INTO `news` (`news_id`, `title`, `description`, `image_name`, `body`, `enabled`, `created`, `updated`) VALUES
+(1, 'Title', 'Description', NULL, 'Body', 1, '2018-01-24 17:00:00', '2018-01-25 10:40:04'),
+(2, 'Title2', 'DESC2', NULL, 'Body2', 1, '2018-01-24 17:00:00', '2018-01-25 10:50:36'),
+(3, 'Title3', 'DESC2', NULL, 'Body2', 1, '2018-01-24 17:00:00', '2018-01-25 10:51:42');
 
 -- --------------------------------------------------------
 
@@ -59,6 +88,7 @@ CREATE TABLE IF NOT EXISTS `persistent_logins` (
 CREATE TABLE IF NOT EXISTS `role` (
   `role_id` bigint(20) NOT NULL,
   `code` varchar(30) NOT NULL,
+  `name` varchar(128) NOT NULL,
   PRIMARY KEY (`role_id`),
   UNIQUE KEY `ROLE_UK` (`code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -67,9 +97,9 @@ CREATE TABLE IF NOT EXISTS `role` (
 -- Dumping data for table `role`
 --
 
-INSERT INTO `role` (`role_id`, `code`) VALUES
-(1, 'ROLE_ADMIN'),
-(2, 'ROLE_USER');
+INSERT INTO `role` (`role_id`, `code`, `name`) VALUES
+(1, 'ROLE_ADMIN', ''),
+(2, 'ROLE_USER', '');
 
 -- --------------------------------------------------------
 

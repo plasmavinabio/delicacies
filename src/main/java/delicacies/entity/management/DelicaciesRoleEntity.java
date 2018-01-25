@@ -22,6 +22,9 @@ public class DelicaciesRoleEntity {
     @Column(name = "code", length = 30, nullable = false)
     private String roleCode;
  
+    @Column(name = "name", length = 256, nullable = false)
+    private String roleName;
+    
     public Long getRoleId() {
         return roleId;
     }
@@ -36,6 +39,14 @@ public class DelicaciesRoleEntity {
  
     public void setRoleCode(String roleCode) {
         this.roleCode = roleCode;
+    }
+    
+    public String getRoleName() {
+        return roleName;
+    }
+ 
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
      
 }
