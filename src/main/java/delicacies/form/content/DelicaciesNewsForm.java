@@ -10,7 +10,7 @@ public class DelicaciesNewsForm {
 	private String description;
 	private String body;
 	private boolean enabled;
-	private Date created;
+	private Long created;
 	
 	public DelicaciesNewsForm() {
 		
@@ -53,20 +53,18 @@ public class DelicaciesNewsForm {
 		return this.body;
 	}
 	
-	public void enable() {
-		this.enabled = true;
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	}
-	public void disable() {
-		this.enabled = false;
-	}
+	
 	public boolean isEnabled() {
 		return this.enabled;
 	}
 	
-	public Date getCreated() {
+	public Long getCreated() {
 		return this.created;
 	}
-	public void setCreated(Date created) {
+	public void setCreated(Long created) {
 		this.created = created;
 	}
 }

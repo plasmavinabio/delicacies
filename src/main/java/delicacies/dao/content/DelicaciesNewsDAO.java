@@ -24,13 +24,13 @@ public class DelicaciesNewsDAO {
 		
 	}
 	
-	public DelicaciesNewsEntity finById(int id) {
+	public DelicaciesNewsEntity finById(Long id) {
 		return this.entityManager.find(DelicaciesNewsEntity.class, id);
 	}
 	
 	public List<DelicaciesNewsModel> listDelicaciesNewsModel() {
         String sql = "Select new " + DelicaciesNewsModel.class.getName() //
-                + "(e.newsId,e.title,e.description, e.body, e.enabled, e.created) " //
+                + "(e.newsId,e.title) " //
                 + " from " + DelicaciesNewsEntity.class.getName() + " e ";
         Query query = entityManager.createQuery(sql, DelicaciesNewsModel.class);
         return query.getResultList();

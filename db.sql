@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 25, 2018 at 05:53 PM
+-- Generation Time: Jan 26, 2018 at 12:56 AM
 -- Server version: 5.6.33-0ubuntu0.14.04.1
--- PHP Version: 5.6.30-7+deb.sury.org~trusty+1
+-- PHP Version: 5.6.31-6+ubuntu14.04.1+deb.sury.org+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -22,10 +22,10 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `language` (
   `id` int(3) unsigned NOT NULL AUTO_INCREMENT,
-  `code` varchar(32) CHARACTER SET utf8 NOT NULL,
-  `name` varchar(128) CHARACTER SET utf8 NOT NULL,
+  `code` varchar(32) NOT NULL,
+  `name` varchar(128) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `language`
@@ -47,23 +47,23 @@ INSERT INTO `language` (`id`, `code`, `name`) VALUES
 CREATE TABLE IF NOT EXISTS `news` (
   `news_id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(256) NOT NULL,
-  `description` longtext NOT NULL,
+  `description` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `image_name` int(11) DEFAULT NULL,
   `body` longtext NOT NULL,
   `enabled` tinyint(1) NOT NULL DEFAULT '0',
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created` int(11) DEFAULT NULL,
+  `updated` int(11) DEFAULT NULL,
   PRIMARY KEY (`news_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `news`
 --
 
 INSERT INTO `news` (`news_id`, `title`, `description`, `image_name`, `body`, `enabled`, `created`, `updated`) VALUES
-(1, 'Title', 'Description', NULL, 'Body', 1, '2018-01-24 17:00:00', '2018-01-25 10:40:04'),
-(2, 'Title2', 'DESC2', NULL, 'Body2', 1, '2018-01-24 17:00:00', '2018-01-25 10:50:36'),
-(3, 'Title3', 'DESC2', NULL, 'Body2', 1, '2018-01-24 17:00:00', '2018-01-25 10:51:42');
+(1, 'Title updated', 'Description updated -- tô đậm', NULL, '<p>Body Update again <strong>T&ocirc; đậm l&ecirc;n ph&aacute;t coi n&agrave;o<br />\r\n<span class="marker">C&ograve;n đoạn n&agrave;y m&agrave;u đỏ m&agrave; kh&ocirc;ng được</span></strong></p>\r\n', 1, 2147483647, 1516900502),
+(2, 'Title2', 'DESC2', NULL, 'Body2', 1, 2147483647, 2147483647),
+(3, 'Title3', 'DESC2', NULL, 'Body2', 1, 2147483647, 2147483647);
 
 -- --------------------------------------------------------
 

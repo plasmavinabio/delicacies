@@ -1,5 +1,7 @@
 package delicacies.controller.backend;
 
+//import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -9,7 +11,8 @@ import delicacies.form.content.DelicaciesNewsForm;
 import delicacies.model.content.DelicaciesNewsModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;  
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class AdminNewsController {
 	@Autowired
 	private DelicaciesNewsDAO delicaciesNewsDAO;
-	
+	private Long time = System.currentTimeMillis() / 1000;
 	@RequestMapping(value = "/admin/content/news", method = RequestMethod.GET)
 	public String showListNews(Model model) {
 		List<DelicaciesNewsModel> list = delicaciesNewsDAO.listDelicaciesNewsModel();
@@ -41,44 +44,59 @@ public class AdminNewsController {
 		String title = form.getTitle();
 		String description = form.getDescription();
 		String body = form.getBody();
-		String check = "ID=" + id + "-DESC=" + description + "-Body=" + body;
+//		String check = "ID=" + id + "-DESC=" + description + "-Body=" + body;
 		if (Objects.isNull(id)) {
 			DelicaciesNewsEntity news = new DelicaciesNewsEntity();
 			news.setTitle(title);
 			news.setDescription(description);
 			news.setBody(body);
 			news.enable();
+			news.setCreated(this.time);
+			news.setUpdated(this.time);
 			delicaciesNewsDAO.DelicaciesNewsEntityCreate(news);
 		}
-		return "redirect:/admin";
+		return "redirect:/admin/content/news";
 	}
 
-//	@RequestMapping(value = "/admin/language/edit", method = RequestMethod.GET, params = {"id"})
-//	public String editLanguage(Model model, @RequestParam(value = "id") int id) {
-//		
-//		DelicaciesLanguageEntity delicaciesLanguageEntity = delicaciesLanguageDAO.finById(id);
-//		DelicaciesLanguageForm delicaciesLanguageForm = new DelicaciesLanguageForm(delicaciesLanguageEntity);
-//		model.addAttribute("delicaciesLanguageForm", delicaciesLanguageForm);
-//		
-//		
-//		return "adminEditLanguagePage";
-//	}
+	@RequestMapping(value = "/admin/content/news/{id}/edit", method = RequestMethod.GET)
+	public String editLanguage(Model model, @PathVariable("id") Long id) {
+		
+		DelicaciesNewsEntity delicaciesNewsEntity = delicaciesNewsDAO.finById(id);
+		DelicaciesNewsForm delicaciesNewsForm = new DelicaciesNewsForm(delicaciesNewsEntity);
+		model.addAttribute("delicaciesNewsForm", delicaciesNewsForm);
+		
+		
+		return "adminEditNewsPage";
+	}
 	
-//	@RequestMapping(value = "/admin/language/edit", method = RequestMethod.POST)
-//	public String editLanguageSubmit(Model model, DelicaciesLanguageForm form) {
-//		DelicaciesLanguageEntity delicaciesLanguageEntity = delicaciesLanguageDAO.finById(form.getId());
-//		delicaciesLanguageEntity.setCode(form.getCode());
-//		delicaciesLanguageEntity.setName(form.getName());
-//		delicaciesLanguageDAO.DelicaciesLanguageEntityUpdate(delicaciesLanguageEntity);
-//		return "redirect:/admin/language";
-//	}
+	@RequestMapping(value = "/admin/content/news/edit", method = RequestMethod.POST)
+	public String editNewsSubmit(Model model, DelicaciesNewsForm form) {
+		DelicaciesNewsEntity delicaciesNewsEntity = delicaciesNewsDAO.finById(form.getNewsId());
+		String title = form.getTitle();
+		String description = form.getDescription();
+		String body = form.getBody();
+		boolean enabled = form.isEnabled();
+		delicaciesNewsEntity.setTitle(title);
+		delicaciesNewsEntity.setDescription(description);
+		delicaciesNewsEntity.setBody(body);
+		delicaciesNewsEntity.setUpdated(this.time);
 
-//	@RequestMapping(value = "/admin/language/delete", method = RequestMethod.GET, params = {"id"})
-//	public String deleteLanguage(Model model, @RequestParam(value = "id") int id) {
-//		
-//		DelicaciesLanguageEntity delicaciesLanguageEntity = delicaciesLanguageDAO.finById(id);
-//		delicaciesLanguageDAO.DelicaciesLanguageEntityDelete(delicaciesLanguageEntity);
-//		return "redirect:/admin/language";
-//	}
+		if (enabled) {
+			delicaciesNewsEntity.enable();
+		}
+		else {
+			delicaciesNewsEntity.disable();
+		}
+		delicaciesNewsDAO.DelicaciesNewsEntityUpdate(delicaciesNewsEntity);
+		return "redirect:/admin/content/news";
+	}
+
+	@RequestMapping(value = "/admin/content/news/{id}/delete", method = RequestMethod.GET)
+	public String deleteLanguage(Model model, @PathVariable("id") Long id) {
+		
+		DelicaciesNewsEntity delicaciesNewsEntity = delicaciesNewsDAO.finById(id);
+		delicaciesNewsDAO.DelicaciesNewsEntityDelete(delicaciesNewsEntity);
+		return "redirect:/admin/content/news";
+	}
 	
 }

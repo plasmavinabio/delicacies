@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <meta charset="UTF-8" />
+      <title>Person List</title>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+      	<script th:src="@{/ckeditor/ckeditor.js}"></script>
+    	<script th:src="@{/ckfinder/ckfinder.js}"></script>
+   </head>
+   <body>
+<div style="padding: 5px;">
+ 
+    <ul>
+ 
+        <li><a href="${pageContext.request.contextPath}/">Home</a></li>
+        <li><a href="${pageContext.request.contextPath}/add">Add language</a></li>
+ 
+    </ul>
+ 
+</div>
+<!-- Main content -->
+      <h1>Person List</h1>
+      <a href="admin/content/news">List news</a>
+      
+      
+      <form th:action="@{/admin/content/news/edit}"
+         th:object="${delicaciesNewsForm}" method="POST">
+         <input type="hidden" th:field="*{newsId}" />
+         Title:
+         <input type="text" th:field="*{title}" />    
+         <br/>
+         Description:
+         <textarea  rows = "10" cols = "80" th:field = "*{description}">... </textarea>
+         <br />
+         Body:
+         <textarea  class="ckeditor" rows = "20" cols = "80" th:field = "*{body}">... </textarea>  
+         <br/>
+         Enabled:
+         <input type="checkbox" th:field="*{enabled}" th:checked="${enabled == true}" ></input>
+         <input type="submit" value="Update" />
+      </form>
+
+<!-- End main content -->
+	<div
+	   style="background: #E0E0E0; text-align: center; padding: 5px; margin-top: 10px;">
+	     
+	   @Copyright training.spring
+	     
+	</div>
+   </body>
+</html>

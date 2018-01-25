@@ -1,14 +1,10 @@
 package delicacies.entity.content;
 
-import java.sql.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 @Table (name = "news")
@@ -31,8 +27,10 @@ public class DelicaciesNewsEntity {
 	private boolean enabled;
 	
 	@Column (name = "created", nullable = false, updatable = false)
-	@CreationTimestamp
-	private Date created;
+	private Long created;
+	
+	@Column (name = "updated", nullable = false)
+	private Long updated;
 	
 	public void setNewsId(Long newsId) {
 		this.newsId = newsId;
@@ -72,11 +70,17 @@ public class DelicaciesNewsEntity {
 		return this.enabled;
 	}
 	
-	public Date getCreated() {
+	public Long getCreated() {
 		return this.created;
 	}
-	public void setCreated(Date created) {
+	public void setCreated(Long created) {
 		this.created = created;
 	}
 	
+	public Long getUpdated() {
+		return this.updated;
+	}
+	public void setUpdated(Long updated) {
+		this.updated = updated;
+	}
 }

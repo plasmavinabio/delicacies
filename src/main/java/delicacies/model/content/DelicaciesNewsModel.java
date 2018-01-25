@@ -1,22 +1,28 @@
 package delicacies.model.content;
 
-import java.sql.Date;
-
-import org.hibernate.annotations.CreationTimestamp;
-
 public class DelicaciesNewsModel {
 	private Long newsId;
 	private String title;
 	private String description;
 	private String body;
 	private boolean enabled;
-	@CreationTimestamp
-	private Date created;
+	private Long created;
 	
 	public DelicaciesNewsModel() {
 		
 	}
-	
+	public DelicaciesNewsModel(Long newsId, String title) {
+		this.newsId = newsId;
+		this.title = title;
+	}
+//	public DelicaciesNewsModel(Long newsId, String title, String description, String body, boolean enabled, Long created) {
+//		this.newsId = newsId;
+//		this.title = title;
+//		this.description = description;
+//		this.body = body;
+//		this.enabled = enabled;
+//		this.created = created;
+//	}
 	public void setNewsId(Long newsId) {
 		this.newsId = newsId;
 	}
@@ -55,10 +61,10 @@ public class DelicaciesNewsModel {
 		return this.enabled;
 	}
 	
-	public Date getCreated() {
+	public Long getCreated() {
 		return this.created;
 	}
-	public void setCreated(Date created) {
+	public void setCreated(Long created) {
 		this.created = created;
 	}
 }

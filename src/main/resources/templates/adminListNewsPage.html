@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <meta charset="UTF-8" />
+      <title>Person List</title>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+   </head>
+   <body>
+<div style="padding: 5px;">
+ 
+    <ul>
+ 
+        <li><a href="${pageContext.request.contextPath}/">Home</a></li>
+ 
+    </ul>
+ 
+</div>
+<!-- Main content -->
+      <h1>News list</h1>
+      <a href="/admin/content/news/add">Add news</a>
+      <br/><br/>
+      <div>
+         <table border="1">
+            <tr>
+            	<th>ID</th>
+               <th>Title</th>
+            </tr>
+            <tr th:each ="news : ${listNews}">
+               <td th:utext="${news.newsId}">...</td>
+               <td th:utext="${news.title}">...</td>
+               <td><a th:href="@{/admin/content/news/{id}/edit(id=${news.newsId})}">Edit</a></td>
+               <td><a th:href="@{/admin/content/news/{id}/delete(id=${news.newsId})}">Delete</a></td>
+            </tr>
+         </table>
+      </div>
+<!-- End main content -->
+	<div
+	   style="background: #E0E0E0; text-align: center; padding: 5px; margin-top: 10px;">
+	     
+	   @Copyright training.spring
+	     
+	</div>
+   </body>
+</html>
