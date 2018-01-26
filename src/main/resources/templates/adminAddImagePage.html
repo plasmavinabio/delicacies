@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <meta charset="UTF-8" />
+      <title>Person List</title>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+   </head>
+   <body>
+<div style="padding: 5px;">
+ 
+    <ul>
+ 
+        <li><a href="${pageContext.request.contextPath}/">Home</a></li>
+        <li><a href="${pageContext.request.contextPath}/add">Add language</a></li>
+ 
+    </ul>
+ 
+</div>
+<!-- Main content -->
+      <h1>Upload image</h1>
+      <a href="admin/content/image">List image</a>
+      
+      
+      <form th:action="@{/admin/content/image/add}"
+         th:object="${delicaciesImageForm}" enctype="multipart/form-data" method="POST">
+         File to upload (1): <input th:field="*{fileDatas}" type="file"/><br />      
+         File to upload (2): <input th:field="*{fileDatas}" type="file"/><br />  
+         <input type="submit" value="Upload" />
+      </form>
+
+<!-- End main content -->
+	<div
+	   style="background: #E0E0E0; text-align: center; padding: 5px; margin-top: 10px;">
+	     
+	   @Copyright training.spring
+	     
+	</div>
+   </body>
+</html>
