@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 26, 2018 at 04:50 PM
+-- Generation Time: Jan 29, 2018 at 12:01 AM
 -- Server version: 5.6.33-0ubuntu0.14.04.1
--- PHP Version: 5.6.30-7+deb.sury.org~trusty+1
+-- PHP Version: 5.6.31-6+ubuntu14.04.1+deb.sury.org+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -13,6 +13,50 @@ SET time_zone = "+00:00";
 --
 -- Database: `java_test1`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `category`
+--
+
+CREATE TABLE IF NOT EXISTS `category` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `active` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `category`
+--
+
+INSERT INTO `category` (`id`, `active`) VALUES
+(1, 1),
+(2, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `category_lang`
+--
+
+CREATE TABLE IF NOT EXISTS `category_lang` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `category_id` int(11) NOT NULL,
+  `language_id` int(11) NOT NULL,
+  `name` varchar(128) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `category_lang`
+--
+
+INSERT INTO `category_lang` (`id`, `category_id`, `language_id`, `name`) VALUES
+(1, 1, 1, 'Apple VN'),
+(2, 1, 2, 'Apple EN'),
+(3, 2, 1, 'Samsung VN'),
+(4, 2, 2, 'Samsung EN');
 
 -- --------------------------------------------------------
 
@@ -25,7 +69,14 @@ CREATE TABLE IF NOT EXISTS `image` (
   `name` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
   `created` int(11) NOT NULL,
   PRIMARY KEY (`image_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `image`
+--
+
+INSERT INTO `image` (`image_id`, `name`, `created`) VALUES
+(5, 'hello-chao.jpg', 1516980886);
 
 -- --------------------------------------------------------
 
@@ -37,6 +88,7 @@ CREATE TABLE IF NOT EXISTS `language` (
   `id` int(3) unsigned NOT NULL AUTO_INCREMENT,
   `code` varchar(32) NOT NULL,
   `name` varchar(128) NOT NULL,
+  `active` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
@@ -44,12 +96,12 @@ CREATE TABLE IF NOT EXISTS `language` (
 -- Dumping data for table `language`
 --
 
-INSERT INTO `language` (`id`, `code`, `name`) VALUES
-(1, 'vn', 'Việt Nam'),
-(2, 'en', 'English'),
-(3, 'fr', 'French'),
-(5, 'ir', 'IRAQ'),
-(6, 'ab', 'AB language');
+INSERT INTO `language` (`id`, `code`, `name`, `active`) VALUES
+(1, 'vn', 'Việt Nam', 0),
+(2, 'en', 'English', 0),
+(3, 'fr', 'French', 0),
+(5, 'ir', 'IRAQ', 0),
+(6, 'ab', 'AB language', 0);
 
 -- --------------------------------------------------------
 
@@ -92,13 +144,6 @@ CREATE TABLE IF NOT EXISTS `persistent_logins` (
   `last_used` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`series`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `persistent_logins`
---
-
-INSERT INTO `persistent_logins` (`username`, `series`, `token`, `last_used`) VALUES
-('admin', 'heZKlzznsKw51uUZRy1LZQ==', 'jeNaD2kvywCr1Eny/kmacg==', '2018-01-26 09:35:31');
 
 -- --------------------------------------------------------
 

@@ -2,7 +2,13 @@ package delicacies.controller.frontend;
 
 import java.security.Principal;
 
+import delicacies.dao.content.CategoryDAO;
+import delicacies.dao.system.DelicaciesLanguageDAO;
+import delicacies.form.content.CategoryEntity;
+import delicacies.form.content.CategoryLangEntity;
 import delicacies.utils.WebUtils;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
@@ -10,12 +16,20 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+
 @Controller
 public class UserController {
+	@Autowired
+	private CategoryDAO categoryDAO;
 	
     @RequestMapping(value = { "/", "/welcome" }, method = RequestMethod.GET)
     public String welcomePage(Model model) {
-        model.addAttribute("title", "Welcome");
+    	CategoryEntity categoryEntity = categoryDAO.findById(2L);
+    	CategoryLangEntity cat = categoryEntity.getCategoryLangEntity().get(2L);
+    	String catName = cat.getName();
+//    	String catName = "ABC";
+//        model.addAttribute("title", "Welcome");
+        model.addAttribute("title", catName);
         model.addAttribute("message", "This is welcome page!");
         return "welcomePage";
     }

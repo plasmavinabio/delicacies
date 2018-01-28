@@ -20,6 +20,19 @@ public class DelicaciesLanguageEntity {
 	@Column(name = "name", length = 128, nullable = false)
 	private String name;
 	
+	@Column(name = "active")
+	private boolean active;
+	
+	public boolean isActive() {
+		return active;
+	}
+	public boolean getActive() {
+		return active;
+	}
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
 	public int getId() {
 		return id;
 	}
